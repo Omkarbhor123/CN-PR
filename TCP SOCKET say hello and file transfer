@@ -1,0 +1,93 @@
+create first file Client.java and second file Server.java
+in the client code replace the name of the file which you want to send and make sure that all client, server,file 
+which you want to send are in the same directory in which you are executing the code 
+
+open two terminals on 1st terminal give command : javac Server.java  
+ press enter then give command : java Server 
+press enter 
+
+open 2nd terminal give command : javac Client.java  
+ press enter then give command : java Client
+press enter 
+
+Client.java  code :
+
+import java.io.*;
+import java.net.*;
+
+public class Client {
+    public static void main(String[] args) {
+        String serverAddress = "localhost"; // Server address to connect to
+        int serverPort = 12345; // Server port number
+
+        try (Socket socket = new Socket(serverAddress, serverPort)) {
+            // Say hello to the server
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            System.out.println("Server says: " + in.readLine());
+
+            // Send file name to the server
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            String fileName = "file.txt"; // Replace with the desired file name
+            out.println(fileName);
+
+            // Send the file to the server
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            OutputStream outputStream = socket.getOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+
+            System.out.println("File sent successfully.");
+            fileInputStream.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+Server.java code :
+
+import java.io.*;
+import java.net.*;
+
+public class Server {
+    public static void main(String[] args) {
+        int portNumber = 12345; // Port to listen on
+
+        try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
+            System.out.println("Server is listening on port " + portNumber);
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Accepted connection from client");
+
+            // Say hello to the client
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            out.println("Hello from the server!");
+
+            // Receive file name from the client
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            String fileName = in.readLine();
+            System.out.println("Receiving file: " + fileName);
+
+            // Receive and save the file
+            FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            InputStream inputStream = clientSocket.getInputStream();
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                fileOutputStream.write(buffer, 0, bytesRead);
+            }
+
+            System.out.println("File received successfully.");
+            fileOutputStream.close();
+            clientSocket.close();
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
