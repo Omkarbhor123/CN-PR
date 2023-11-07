@@ -1,0 +1,80 @@
+create first file UDPClient.java and second file UDPServer.java
+open two terminals on 1st terminal give command : javac UDPServer.java  
+ press enter then give command : java UDPServer 
+press enter 
+
+open 2nd terminal give command : javac UDPClient.java  
+ press enter then give command : java UDPClient
+press enter 
+
+UDPClient.java  code :
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+public class UDPClient {
+    public static void main(String[] args) {
+        try {
+            // Get the server's IP address
+            InetAddress serverAddress = InetAddress.getByName("localhost");
+
+            // Create a DatagramSocket for the client
+            DatagramSocket clientSocket = new DatagramSocket();
+
+            // Message to send
+            String message = "Hello, UDP Server!";
+            byte[] sendData = message.getBytes();
+
+            // Create a DatagramPacket to send data to the server
+            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, serverAddress, 9876);
+
+            // Send the packet to the server
+            clientSocket.send(sendPacket);
+
+            System.out.println("Message sent to server: " + message);
+
+            // Close the client socket
+            clientSocket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+UDPServer.java  code :
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+public class UDPServer {
+    public static void main(String[] args) {
+        try {
+            // Create a DatagramSocket and bind it to a specific port
+            DatagramSocket serverSocket = new DatagramSocket(12345);
+            System.out.println("UDP Server is running...");
+
+            byte[] receiveData = new byte[1024];
+
+            while (true) {
+                // Create a DatagramPacket to receive data from clients
+                DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+
+                // Receive data from client
+                serverSocket.receive(receivePacket);
+
+                // Convert the received data to a string
+                String message = new String(receivePacket.getData(), 0, receivePacket.getLength());
+
+                // Display the received message and client's address
+                System.out.println("Received from client: " + message);
+                System.out.println("Client IP: " + receivePacket.getAddress() + ", Port: " + receivePacket.getPort());
+
+                // Clear the receive buffer
+                receiveData = new byte[1024];
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
