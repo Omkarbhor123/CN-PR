@@ -1,0 +1,21 @@
+1)take server,router(2911) ,switch(2960-24) ,2 PC
+2)connect pc to switch and connect switch and server to router 
+3)now hover on cable connected to server and router check on which port server is connected
+ then click on router go to config choose interface (gigabitEthernet0/0) give ip address 10.10.10.1
+and click on the on checkbox at top right corner
+4)again hover on cable connected to switch and router check to which port of the router cable is connected
+then then click on router gor to config and in interface click on the cable and assign ip address 192.168.1.1
+and click on the on checkbox at top right corner
+5)assign ip addresses to pc like 192.168.1.2 and default gateway as 192.168.1.1  , 192.168.1.3 and default gateway as 192.168.1.1
+6)assign ip address to server as 10.10.10.2 and default gatway as 10.10.10.1
+7)click on server go to services click on ftp write username and password then click on checkboxes read ,write , rename ,list and then click on add
+8)after that click on 1st pc go to desktop click on text editor write something in the file save the file with .txt extension then go back click on command promt 
+write ping  and then write server ip address(10.10.10.2) press enter 
+then type ftp and server ip address and press enter then give username and password
+then upload file on server by writing command : put filename(xyz.txt) press enter
+to check file is uploaded or not give command dir press enter 
+9) now to download the file click on second pc then go to desktop ->command promtthen type 
+ftp server ip address(10.10.10.2 )
+give the username and password 
+then to download file type get filename(xyz.txt)
+10)type dir press enter
