@@ -1,0 +1,32 @@
+1)take three routers(1841),three switches(2950-24),three pc
+2)connect 1st pc to 1st switch , 2nd pc to 2nd switch ,3rd pc to 3rd switch 
+3) a)then click on the first router ->physical->to add 1 extra slot first turn OFF the router ->click 
+on wc-1T and drag and drop it to slot then turn ON the router 
+b)now similarly click on the 3rd router do the same process as above 
+c) now click on router 2 ->physical ->turn OFF router click on WC-1T drag and drop two slots 
+1st below zoom in and second below zoom out then turn on the router 
+4)then connect switch 1 to router1 switch,2 to router 2 switch ,3 to router3
+5) then ip address to 1st pc as 192.168.1.2 and default gateway as 192.168.1.3
+   then give ip address to 2nd pc  as 192.168.2.2 and default gateway as 192.168.2.3
+    then give ip address to 3rd pc  as 192.168.3.2 and default gateway as 192.168.3.3
+6)a) hover on the cable between switch 1 and router 1 check to which port of router switch cable is connected then click on 1st router
+  go to config->interface choose cable name give ip address as 192.168.1.3 and turn ON the router 
+b) hover on the cable between switch 2 and router 2 check to which port of router switch cable is connected then click on 2st router
+  go to config->interface choose cable name give ip address as 192.168.2.3 and turn ON the router 
+c)hover on the cable between switch 3 and router 3 check to which port of router switch cable is connected then click on 3rd router
+  go to config->interface choose cable name give ip address as 192.168.3.3 and turn ON the router 
+
+7) hover on the cable connected between router 1 and router2  see the prouter port to which the cable is connected (se 0/0/0) (serial port)
+then click on router 1 ->config->interfacce->select cabel (serial/0/0/0) and then give ip address as 192.168.4.2 and turn ON the router
+similarly do for the 3rd router and second router
+8)then send msg from pc to router to check it's working or not 
+10) a)now click on router 1 ->config->RIP->as router is connected to pc1 write pc1 ip address bt last digit is zero(192.168.1.0) in the box and click on add 
+router 1 also connected to router 2 ->do same process as above but write ip address of router 2 as 192.168.4.0 
+b)now click on router3 and do same as above just write ip address for pc as 192.168.3.0 then click on add also the router 2 is connected to router 3 do same process 
+just write ip address as 192.168.5.0 and click on add button 
+c) now for router 2 which is connected to pc(middle) router1 and router 3 do same process as above just giving ip address as 
+for 1st router ip address as 192.168.4.0
+for 3rd router  :192.168.5.0
+for pc :192.168.2.0
+11)now send the messages
+
