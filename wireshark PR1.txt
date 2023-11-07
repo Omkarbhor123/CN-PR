@@ -1,0 +1,7 @@
+1)tcp && ip.addr==192.168.43.228 && ip.addr==31.13.79.35
+2)http && ip.addr==192.168.43.228 && ip.addr==121.241.73.169
+3)tcp.flags.syn==1 && ip.addr==192.168.43.228 && ip.addr==31.13.79.35
+tcp.flags.push==1 && ip.addr==192.168.43.228 && ip.addr==31.13.79.35
+tcp.flags.reset==1 && ip.addr==192.168.43.228 && ip.addr==31.13.79.35
+4) visit to www.unipune.ac.in 
+tcp && ip.addr==192.168.43.228 && ip.addr==121.241.73.169
